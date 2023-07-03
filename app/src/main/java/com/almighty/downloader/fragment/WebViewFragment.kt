@@ -3,6 +3,7 @@ package com.almighty.downloader.fragment
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,21 @@ class WebViewFragment : Fragment() {
             }
 
             webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                    view?.loadUrl(url.toString())
+                    return true
+                }
 
+                override fun onLoadResource(view: WebView?, url: String?) {
+                    super.onLoadResource(view, url)
+                    Log.d(TAG, "onLoadResource() called with: view = $view, url = $url")
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                    Log.d(TAG, "onPageFinished() called with: view = $view, url = $url")
+
+                }
 
             }
 
@@ -59,5 +74,6 @@ class WebViewFragment : Fragment() {
 
     companion object {
         private const val TAG = "WebViewFragment"
+
     }
 }
