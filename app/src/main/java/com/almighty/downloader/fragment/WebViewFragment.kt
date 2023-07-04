@@ -77,7 +77,7 @@ class WebViewFragment : Fragment() {
 
         }
         binding.webView.addJavascriptInterface(AndroidJSInterface, "Android")
-        binding.webView.loadUrl("https://twitter.com/")
+        binding.webView.loadUrl("https://m.baidu.com/")
 
     }
 
