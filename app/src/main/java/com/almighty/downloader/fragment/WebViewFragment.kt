@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.CookieManager
+import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -45,6 +46,7 @@ class WebViewFragment : Fragment() {
                 override fun onReceivedTitle(view: WebView?, title: String?) {
 
                 }
+
             }
 
             webViewClient = object : WebViewClient() {
@@ -61,15 +63,32 @@ class WebViewFragment : Fragment() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                     Log.d(TAG, "onPageFinished() called with: view = $view, url = $url")
-
+                    view?.let {
+                        loadJs(view)
+                    }
                 }
 
             }
 
         }
-
+        binding.webView.addJavascriptInterface(AndroidJSInterface, "Android")
         binding.webView.loadUrl("https://twitter.com/")
 
+    }
+
+
+    private fun loadJs(webView: WebView) {
+        val script = "(function f() {var btns = document.getElementsByClassName('rec-item rn-typeNewsOne'); alert(btns.length);})()"
+        webView.loadUrl("javascript:" + script)
+    }
+
+
+    object AndroidJSInterface {
+
+        @JavascriptInterface
+        fun onClicked() {
+            Log.d(TAG, "Help button clicked")
+        }
     }
 
     companion object {
