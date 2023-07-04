@@ -15,6 +15,11 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.almighty.downloader.R
 import com.almighty.downloader.databinding.FragmentWebViewLayoutBinding
+import com.almighty.downloader.utils.FileUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class WebViewFragment : Fragment() {
     private val binding by lazy {
@@ -78,8 +83,14 @@ class WebViewFragment : Fragment() {
 
 
     private fun loadJs(webView: WebView) {
-        val script = "(function f() {var btns = document.getElementsByClassName('rec-item rn-typeNewsOne'); alert(btns.length);})()"
-        webView.loadUrl("javascript:" + script)
+        GlobalScope.launch {
+            val script = FileUtils.readAssetFile(requireContext(), "twitter.js")
+            withContext(Dispatchers.Main) {
+                webView.loadUrl("javascript:$script")
+            }
+
+        }
+
     }
 
 
