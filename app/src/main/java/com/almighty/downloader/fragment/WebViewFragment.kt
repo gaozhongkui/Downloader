@@ -40,6 +40,9 @@ class WebViewFragment : Fragment() {
             settings.domStorageEnabled = true
             settings.useWideViewPort = true
             settings.databaseEnabled = true
+            settings.allowFileAccessFromFileURLs = true
+            settings.allowFileAccess = true
+            settings.allowContentAccess = true
             val userAgent = System.getProperty("http.agent")
             userAgent?.let {
                 settings.userAgentString = userAgent + resources.getString(R.string.app_name)
@@ -79,7 +82,7 @@ class WebViewFragment : Fragment() {
 
         }
         binding.webView.addJavascriptInterface(AndroidJSInterface, "Android")
-        binding.webView.loadUrl("https://m.baidu.com/")
+        binding.webView.loadUrl("https://twitter.com/")
 
     }
 

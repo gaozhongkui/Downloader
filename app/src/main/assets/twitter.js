@@ -1,6 +1,6 @@
 var startPrefix = "<div onclick=\"zy()\"";
-var z = startPrefix + "  style='float: right; margin-right:20px'> <img src='https://img1.baidu.com/it/u=646039420,823209841&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500' width=40 height=40/></div>";
-var styleArray = ['rec-item rn-typeNewsOne', 'rec-item rn-newsThree', 'rec-item rn-typeSmallVideo', 'rec-item rn-typeNewsOne', 'rec-item rn-typeLargeVideo'];
+var z = startPrefix + "  style='float: right; margin-right:20px'> <img src='file:///android_asset/download.png' width=40 height=40/></div>";
+var styleArray = ['css-1dbjc4n r-1ets6dv r-1867qdf r-1phboty r-rs99b7 r-1ny4l3l r-1udh08x r-o7ynqc r-6416eg'];
 
 function zy() {
 	Android.onClicked()
