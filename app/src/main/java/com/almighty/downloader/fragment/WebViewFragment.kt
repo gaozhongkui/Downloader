@@ -12,8 +12,10 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.almighty.downloader.R
+import com.almighty.downloader.TheApp
 import com.almighty.downloader.databinding.FragmentWebViewLayoutBinding
 import com.almighty.downloader.utils.FileUtils
 import kotlinx.coroutines.Dispatchers
@@ -99,6 +101,10 @@ class WebViewFragment : Fragment() {
         @JavascriptInterface
         fun onClicked() {
             Log.d(TAG, "Help button clicked")
+            GlobalScope.launch(Dispatchers.Main) {
+                Toast.makeText(TheApp.getInstance(), "zzz", Toast.LENGTH_LONG).show()
+            }
+
         }
     }
 
