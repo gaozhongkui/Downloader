@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
@@ -28,7 +30,11 @@ class WebViewFragment : Fragment() {
         FragmentWebViewLayoutBinding.inflate(layoutInflater)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return binding.root
     }
 
@@ -40,7 +46,6 @@ class WebViewFragment : Fragment() {
             settings.domStorageEnabled = true
             settings.useWideViewPort = true
             settings.databaseEnabled = true
-            settings.allowFileAccessFromFileURLs = true
             settings.allowFileAccess = true
             settings.allowContentAccess = true
             val userAgent = System.getProperty("http.agent")
@@ -67,7 +72,24 @@ class WebViewFragment : Fragment() {
 
                 override fun onLoadResource(view: WebView?, url: String?) {
                     super.onLoadResource(view, url)
-                    Log.d(TAG, "onLoadResource() called with: view = $view, url = $url")
+                    //  Log.d(TAG, "onLoadResource() called with: view = $view, url = $url")
+                }
+
+                override fun shouldInterceptRequest(
+                    view: WebView?,
+                    request: WebResourceRequest?
+                ): WebResourceResponse? {
+                    request?.let {
+                        val httpUrl = it.url.toString()
+                        Log.d(TAG, "shouldInterceptRequest() called"+httpUrl)
+                        if (httpUrl.startsWith("https://twitter.com/gaozhongkui")) {
+                            val  input=
+                                TheApp.getInstance().applicationContext.assets.open("download.png")
+                            return WebResourceResponse("image/png","utf-8",input)
+                        }
+                    }
+
+                    return super.shouldInterceptRequest(view, request)
                 }
 
                 override fun onPageFinished(view: WebView?, url: String?) {
