@@ -14,7 +14,6 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.almighty.downloader.R
 import com.almighty.downloader.TheApp
@@ -24,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.jsoup.Jsoup
 
 class WebViewFragment : Fragment() {
     private val binding by lazy {
@@ -31,10 +31,8 @@ class WebViewFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         return binding.root
     }
 
@@ -76,16 +74,14 @@ class WebViewFragment : Fragment() {
                 }
 
                 override fun shouldInterceptRequest(
-                    view: WebView?,
-                    request: WebResourceRequest?
+                    view: WebView?, request: WebResourceRequest?
                 ): WebResourceResponse? {
                     request?.let {
                         val httpUrl = it.url.toString()
-                        Log.d(TAG, "shouldInterceptRequest() called"+httpUrl)
+                        Log.d(TAG, "shouldInterceptRequest() called" + httpUrl)
                         if (httpUrl.startsWith("https://twitter.com/gaozhongkui")) {
-                            val  input=
-                                TheApp.getInstance().applicationContext.assets.open("download.png")
-                            return WebResourceResponse("image/png","utf-8",input)
+                            val input = TheApp.getInstance().applicationContext.assets.open("download.png")
+                            return WebResourceResponse("image/png", "utf-8", input)
                         }
                     }
 
@@ -104,7 +100,7 @@ class WebViewFragment : Fragment() {
 
         }
         binding.webView.addJavascriptInterface(AndroidJSInterface, "Android")
-        binding.webView.loadUrl("https://twitter.com/")
+        binding.webView.loadUrl("https://m.baidu.com/")
 
     }
 
@@ -124,12 +120,11 @@ class WebViewFragment : Fragment() {
     object AndroidJSInterface {
 
         @JavascriptInterface
-        fun onClicked() {
+        fun onClicked(data: String) {
             Log.d(TAG, "Help button clicked")
-            GlobalScope.launch(Dispatchers.Main) {
-                Toast.makeText(TheApp.getInstance(), "zzz", Toast.LENGTH_LONG).show()
-            }
-
+            val parse = Jsoup.parse(data)
+            val elements = parse.body().select("img")
+            Log.d(TAG, "onClicked() called with: data = $elements")
         }
     }
 
