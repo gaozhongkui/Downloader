@@ -13,4 +13,13 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="BottomNavigation_active">
+        <item name="android:textSize">@dimen/design_bottom_navigation_text_size</item>
+    </style>
+
+    <style name="BottomNavigation_unactive">
+        <item name="android:textSize">@dimen/design_bottom_navigation_text_size</item>
+    </style>
 </resources>
