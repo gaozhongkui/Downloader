@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="gray_dark">#222222</color>
+    <color name="gray_medium">#cdcdcd</color>
+
     <color name="white_alpha_80">#CCFFFFFF</color>
     <color name="white_alpha_70">#B3FFFFFF</color>
     <color name="white_alpha_60">#99FFFFFF</color>
