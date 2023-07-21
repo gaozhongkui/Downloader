@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment
 import com.almighty.downloader.R
 import com.almighty.downloader.TheApp
 import com.almighty.downloader.databinding.FragmentWebViewLayoutBinding
-import com.almighty.downloader.utils.FileUtils
+import com.almighty.downloader.utils.AssetUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -107,7 +107,7 @@ class WebViewFragment : Fragment() {
 
     private fun loadJs(webView: WebView) {
         GlobalScope.launch {
-            val script = FileUtils.readAssetFile(requireContext(), "twitter.js")
+            val script = AssetUtils.readAssetFile(requireContext(), "twitter.js")
             withContext(Dispatchers.Main) {
                 webView.loadUrl("javascript:$script")
             }

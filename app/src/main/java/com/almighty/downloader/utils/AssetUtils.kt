@@ -5,7 +5,7 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
-object FileUtils {
+object AssetUtils {
     fun readAssetFile(context: Context, fileName: String): String {
         val assetManager = context.assets
         val stringBuilder = StringBuilder()
