@@ -1,6 +1,6 @@
 package com.almighty.downloader.browser.tab
 
-import com.almighty.downloader.BuildConfig
+
 import com.almighty.downloader.R
 import com.almighty.downloader.browser.di.IncognitoMode
 import com.almighty.downloader.constant.FILE
@@ -119,7 +119,7 @@ class UrlHandler @Inject constructor(
                 intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
                 val contentUri = FileProvider.getUriForFile(
                     activity,
-                    BuildConfig.APPLICATION_ID + ".fileprovider",
+                    /*BuildConfig.APPLICATION_ID +*/ ".fileprovider",
                     file
                 )
                 intent.setDataAndType(contentUri, newMimeType)

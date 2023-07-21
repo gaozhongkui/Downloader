@@ -1,6 +1,6 @@
 package com.almighty.downloader.adblock.source
 
-import com.almighty.downloader.BuildConfig
+import com.permissionx.guolindev.BuildConfig
 import com.almighty.downloader.adblock.parser.HostsFileParser
 import com.almighty.downloader.log.Logger
 import android.content.res.AssetManager
@@ -40,7 +40,7 @@ class AssetsHostsDataSource @Inject constructor(
         emitter.onSuccess(HostsResult.Success(domains))
     }
 
-    override fun identifier(): String = "assets:${BuildConfig.VERSION_CODE}"
+    override fun identifier(): String = "assets:${""}"
 
     companion object {
         private const val TAG = "AssetsHostsDataSource"

@@ -42,7 +42,7 @@ class HistoryPageFactory @Inject constructor(
     }
 
     private val backgroundColor: String
-        get() = themeProvider.color(R.attr.colorPrimary).toColor()
+        get() = themeProvider.color(0/*R.attr.colorPrimary*/).toColor()
     private val dividerColor: String
         get() = themeProvider.color(R.attr.autoCompleteBackgroundColor).toColor()
     private val textColor: String

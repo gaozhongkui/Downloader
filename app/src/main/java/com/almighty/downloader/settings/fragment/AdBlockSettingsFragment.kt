@@ -1,6 +1,6 @@
 package com.almighty.downloader.settings.fragment
 
-import com.almighty.downloader.BuildConfig
+import com.permissionx.guolindev.BuildConfig
 import com.almighty.downloader.R
 import com.almighty.downloader.adblock.BloomFilterAdBlocker
 import com.almighty.downloader.adblock.source.HostsSourceType
@@ -59,8 +59,8 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
 
         clickableDynamicPreference(
             preference = "preference_hosts_source",
-            isEnabled = BuildConfig.FULL_VERSION,
-            summary = if (BuildConfig.FULL_VERSION) {
+            isEnabled = true,//BuildConfig.FULL_VERSION
+            summary = if (true/*BuildConfig.FULL_VERSION*/) {
                 userPreferences.selectedHostsSource().toSummary()
             } else {
                 getString(R.string.block_ads_upsell_source)

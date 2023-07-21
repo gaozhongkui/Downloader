@@ -1,8 +1,10 @@
 package com.almighty.downloader
 
-import com.almighty.downloader.utils.LeakCanaryUtils
-import com.almighty.downloader.browser.di.AppComponent
-import com.almighty.downloader.browser.di.DaggerAppComponent
+import android.app.Activity
+import android.app.Application
+import android.os.Build
+import android.os.StrictMode
+import android.webkit.WebView
 import com.almighty.downloader.browser.di.DatabaseScheduler
 import com.almighty.downloader.browser.di.injector
 import com.almighty.downloader.browser.proxy.ProxyAdapter
@@ -11,14 +13,10 @@ import com.almighty.downloader.database.bookmark.BookmarkRepository
 import com.almighty.downloader.device.BuildInfo
 import com.almighty.downloader.device.BuildType
 import com.almighty.downloader.log.Logger
-import com.almighty.downloader.utils.MemoryLeakUtils
-import android.app.Activity
-import android.app.Application
-import android.os.Build
-import android.os.StrictMode
-import com.almighty.downloader.BuildConfig
-import android.webkit.WebView
 import com.almighty.downloader.utils.FileUtils
+import com.almighty.downloader.utils.LeakCanaryUtils
+import com.almighty.downloader.utils.MemoryLeakUtils
+import com.permissionx.guolindev.BuildConfig
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
@@ -49,7 +47,7 @@ class BrowserApp : Application() {
     @Inject
     internal lateinit var proxyAdapter: ProxyAdapter
 
-    lateinit var applicationComponent: AppComponent
+//    lateinit var applicationComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -95,10 +93,10 @@ class BrowserApp : Application() {
             }
         }
 
-        applicationComponent = DaggerAppComponent.builder()
+    /*    applicationComponent = DaggerAppComponent.builder()
             .application(this)
             .buildInfo(createBuildInfo())
-            .build()
+            .build()*/
         injector.inject(this)
 
         Single.fromCallable(bookmarkModel::count)

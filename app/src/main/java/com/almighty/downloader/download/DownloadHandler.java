@@ -23,7 +23,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import com.almighty.downloader.BuildConfig;
+import com.permissionx.guolindev.BuildConfig;
 import com.almighty.downloader.R;
 import com.almighty.downloader.DefaultBrowserActivity;
 import com.almighty.downloader.browser.di.MainScheduler;
@@ -107,7 +107,7 @@ public class DownloadHandler {
             if (info != null) {
                 // If we resolved to ourselves, we don't want to attempt to
                 // load the url only to try and download it again.
-                if (BuildConfig.APPLICATION_ID.equals(info.activityInfo.packageName)
+                if ("BuildConfig.APPLICATION_ID".equals(info.activityInfo.packageName)
                     || DefaultBrowserActivity.class.getName().equals(info.activityInfo.name)) {
                     // someone (other than us) knows how to handle this mime
                     // type with this scheme, don't download.
