@@ -5,6 +5,8 @@ import android.app.Application
 import android.os.Build
 import android.os.StrictMode
 import android.webkit.WebView
+import com.almighty.downloader.browser.di.AppComponent
+import com.almighty.downloader.browser.di.DaggerAppComponent
 import com.almighty.downloader.browser.di.DatabaseScheduler
 import com.almighty.downloader.browser.di.injector
 import com.almighty.downloader.browser.proxy.ProxyAdapter
@@ -47,7 +49,7 @@ class BrowserApp : Application() {
     @Inject
     internal lateinit var proxyAdapter: ProxyAdapter
 
-//    lateinit var applicationComponent: AppComponent
+    lateinit var applicationComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -93,10 +95,10 @@ class BrowserApp : Application() {
             }
         }
 
-    /*    applicationComponent = DaggerAppComponent.builder()
+        applicationComponent = DaggerAppComponent.builder()
             .application(this)
             .buildInfo(createBuildInfo())
-            .build()*/
+            .build()
         injector.inject(this)
 
         Single.fromCallable(bookmarkModel::count)

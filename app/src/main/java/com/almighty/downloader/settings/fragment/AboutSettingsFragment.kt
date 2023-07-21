@@ -3,7 +3,7 @@
  */
 package com.almighty.downloader.settings.fragment
 
-import com.permissionx.guolindev.BuildConfig
+import com.almighty.downloader.BuildConfig
 import com.almighty.downloader.R
 import android.os.Bundle
 
@@ -15,7 +15,7 @@ class AboutSettingsFragment : AbstractSettingsFragment() {
         super.onCreatePreferences(savedInstanceState, rootKey)
         clickablePreference(
             preference = SETTINGS_VERSION,
-            summary = "",//BuildConfig.VERSION_NAME,
+            summary = BuildConfig.VERSION_NAME,
             onClick = { }
         )
     }

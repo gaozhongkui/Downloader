@@ -31,7 +31,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
-//import com.anthonycr.mezzanine.MezzanineGenerator
+import com.anthonycr.mezzanine.MezzanineGenerator
 import dagger.Module
 import dagger.Provides
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -189,7 +189,7 @@ class AppModule {
         NoOpLogger()
     }
 
-   /* @Provides
+    @Provides
     fun providesListPageReader(): ListPageReader = MezzanineGenerator.ListPageReader()
 
     @Provides
@@ -205,7 +205,7 @@ class AppModule {
     fun providesThemeColor(): ThemeColor = MezzanineGenerator.ThemeColor()
 
     @Provides
-    fun providesInvertPage(): InvertPage = MezzanineGenerator.InvertPage()*/
+    fun providesInvertPage(): InvertPage = MezzanineGenerator.InvertPage()
 
     @DefaultTabTitle
     @Provides
