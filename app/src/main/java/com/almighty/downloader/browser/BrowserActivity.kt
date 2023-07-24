@@ -147,7 +147,7 @@ abstract class BrowserActivity : ThemableBrowserActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        injector.browser2ComponentBuilder()
+       /* injector.browser2ComponentBuilder()
             .activity(this)
             .browserFrame(binding.contentFrame)
             .toolbarRoot(binding.uiLayout)
@@ -155,7 +155,7 @@ abstract class BrowserActivity : ThemableBrowserActivity() {
             .initialIntent(intent)
             .incognitoMode(isIncognito())
             .build()
-            .inject(this)
+            .inject(this)*/
 
         binding.drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
 
@@ -239,7 +239,7 @@ abstract class BrowserActivity : ThemableBrowserActivity() {
         binding.bookmarkListView.adapter = bookmarksAdapter
         binding.bookmarkListView.layoutManager = LinearLayoutManager(this)
 
-        presenter.onViewAttached(BrowserStateAdapter(this))
+     //   presenter.onViewAttached(BrowserStateAdapter(this))
 
         val suggestionsAdapter = SuggestionsAdapter(this, isIncognito = isIncognito()).apply {
             onSuggestionInsertClick = {

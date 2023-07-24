@@ -9,36 +9,22 @@ import com.almighty.downloader.ssl.showSslDialog
 import android.content.Intent
 import android.view.View
 import com.almighty.downloader.browser.view.targetUrl.LongPress
+import com.almighty.downloader.fragment.HomeFragment
 
 /**
  * An adapter between [BrowserContract.View] and the [BrowserActivity] that creates partial states
  * to render in the activity.
  */
-class BrowserStateAdapter(private val browserActivity: BrowserActivity) : BrowserContract.View {
+class BrowserStateAdapter(private val homeFragment: HomeFragment) : BrowserContract.View {
 
     private var currentState: BrowserViewState? = null
     private var currentTabs: List<TabViewState>? = null
 
     override fun renderState(viewState: BrowserViewState) {
-        val (
-            displayUrl,
-            sslState,
-            isRefresh,
-            progress,
-            enableFullMenu,
-            themeColor,
-            isForwardEnabled,
-            isBackEnabled,
-            bookmarks,
-            isBookmarked,
-            isBookmarkEnabled,
-            isRootFolder,
-            findInPage
-        ) = viewState
+        val (displayUrl, sslState, isRefresh, progress, enableFullMenu, themeColor, isForwardEnabled, isBackEnabled, bookmarks, isBookmarked, isBookmarkEnabled, isRootFolder, findInPage) = viewState
 
-        browserActivity.renderState(
-            PartialBrowserViewState(
-                displayUrl = displayUrl.takeIf { it != currentState?.displayUrl },
+        homeFragment.renderState(
+            PartialBrowserViewState(displayUrl = displayUrl.takeIf { it != currentState?.displayUrl },
                 sslState = sslState.takeIf { it != currentState?.sslState },
                 isRefresh = isRefresh.takeIf { it != currentState?.isRefresh },
                 progress = progress.takeIf { it != currentState?.progress },
@@ -50,111 +36,107 @@ class BrowserStateAdapter(private val browserActivity: BrowserActivity) : Browse
                 isBookmarked = isBookmarked.takeIf { it != currentState?.isBookmarked },
                 isBookmarkEnabled = isBookmarkEnabled.takeIf { it != currentState?.isBookmarkEnabled },
                 isRootFolder = isRootFolder.takeIf { it != currentState?.isRootFolder },
-                findInPage = findInPage.takeIf { it != currentState?.findInPage }
-            )
+                findInPage = findInPage.takeIf { it != currentState?.findInPage })
         )
 
         currentState = viewState
     }
 
     override fun renderTabs(tabs: List<TabViewState>) {
-        tabs.takeIf { it != currentTabs }?.let(browserActivity::renderTabs)
+        tabs.takeIf { it != currentTabs }?.let(homeFragment::renderTabs)
     }
 
     override fun showAddBookmarkDialog(title: String, url: String, folders: List<String>) {
-        browserActivity.showAddBookmarkDialog(title, url, folders)
+        homeFragment.showAddBookmarkDialog(title, url, folders)
     }
 
     override fun showBookmarkOptionsDialog(bookmark: Bookmark.Entry) {
-        browserActivity.showBookmarkOptionsDialog(bookmark)
+        homeFragment.showBookmarkOptionsDialog(bookmark)
     }
 
     override fun showEditBookmarkDialog(
-        title: String,
-        url: String,
-        folder: String,
-        folders: List<String>
+        title: String, url: String, folder: String, folders: List<String>
     ) {
-        browserActivity.showEditBookmarkDialog(title, url, folder, folders)
+        homeFragment.showEditBookmarkDialog(title, url, folder, folders)
     }
 
     override fun showFolderOptionsDialog(folder: Bookmark.Folder) {
-        browserActivity.showFolderOptionsDialog(folder)
+        homeFragment.showFolderOptionsDialog(folder)
     }
 
     override fun showEditFolderDialog(title: String) {
-        browserActivity.showEditFolderDialog(title)
+        homeFragment.showEditFolderDialog(title)
     }
 
     override fun showDownloadOptionsDialog(download: DownloadEntry) {
-        browserActivity.showDownloadOptionsDialog(download)
+        homeFragment.showDownloadOptionsDialog(download)
     }
 
     override fun showHistoryOptionsDialog(historyEntry: HistoryEntry) {
-        browserActivity.showHistoryOptionsDialog(historyEntry)
+        homeFragment.showHistoryOptionsDialog(historyEntry)
     }
 
     override fun showFindInPageDialog() {
-        browserActivity.showFindInPageDialog()
+        homeFragment.showFindInPageDialog()
     }
 
     override fun showLinkLongPressDialog(longPress: LongPress) {
-        browserActivity.showLinkLongPressDialog(longPress)
+        homeFragment.showLinkLongPressDialog(longPress)
     }
 
     override fun showImageLongPressDialog(longPress: LongPress) {
-        browserActivity.showImageLongPressDialog(longPress)
+        homeFragment.showImageLongPressDialog(longPress)
     }
 
     override fun showSslDialog(sslCertificateInfo: SslCertificateInfo) {
-        browserActivity.showSslDialog(sslCertificateInfo)
+        homeFragment.context?.showSslDialog(sslCertificateInfo)
     }
 
     override fun showCloseBrowserDialog(id: Int) {
-        browserActivity.showCloseBrowserDialog(id)
+        homeFragment.showCloseBrowserDialog(id)
     }
 
     override fun openBookmarkDrawer() {
-        browserActivity.openBookmarkDrawer()
+        homeFragment.openBookmarkDrawer()
     }
 
     override fun closeBookmarkDrawer() {
-        browserActivity.closeBookmarkDrawer()
+        homeFragment.closeBookmarkDrawer()
     }
 
     override fun openTabDrawer() {
-        browserActivity.openTabDrawer()
+        homeFragment.openTabDrawer()
     }
 
     override fun closeTabDrawer() {
-        browserActivity.closeTabDrawer()
+        homeFragment.closeTabDrawer()
     }
 
     override fun showToolbar() {
-        browserActivity.showToolbar()
+        homeFragment.showToolbar()
     }
 
     override fun showToolsDialog(areAdsAllowed: Boolean, shouldShowAdBlockOption: Boolean) {
-        browserActivity.showToolsDialog(areAdsAllowed, shouldShowAdBlockOption)
+        homeFragment.showToolsDialog(areAdsAllowed, shouldShowAdBlockOption)
     }
 
     override fun showLocalFileBlockedDialog() {
-        browserActivity.showLocalFileBlockedDialog()
+        homeFragment.showLocalFileBlockedDialog()
     }
 
     override fun showFileChooser(intent: Intent) {
-        browserActivity.showFileChooser(intent)
+        homeFragment.showFileChooser(intent)
     }
 
     override fun showCustomView(view: View) {
-        browserActivity.showCustomView(view)
+        homeFragment.showCustomView(view)
     }
 
     override fun hideCustomView() {
-        browserActivity.hideCustomView()
+        homeFragment.hideCustomView()
     }
 
     override fun clearSearchFocus() {
-        browserActivity.clearSearchFocus()
+        homeFragment.clearSearchFocus()
     }
 }

@@ -1,10 +1,10 @@
 package com.almighty.downloader.browser.di
 
-import com.almighty.downloader.browser.BrowserActivity
 import android.content.Intent
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -42,7 +42,7 @@ interface Browser2Component {
 
     }
 
-    fun inject(browserActivity: BrowserActivity)
+    fun inject(fragment: Fragment)
 
 }
 
